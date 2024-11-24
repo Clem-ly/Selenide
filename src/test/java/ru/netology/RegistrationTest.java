@@ -33,6 +33,8 @@ public class RegistrationTest {
         $("[data-test-id=agreement]").click();
         $$("button").find(exactText("Забронировать")).click();
         $(withText("Успешно!")).shouldBe(visible, Duration.ofSeconds(12));
-        $(withText("Встреча успешно забронирована")).shouldBe(visible, Duration.ofSeconds(12));;
+        $(withText("Встреча успешно забронирована на")).shouldBe(visible, Duration.ofSeconds(12));;
+        $("[data-test-id=notification]").shouldBe(Condition.visible, Duration.ofSeconds(12));
+        $("[data-test-id=notification]").shouldHave(Condition.text("Успешно! Встреча успешно забронирована на " + generateDate(4, "dd.MM.yyyy"))).shouldBe(Condition.visible);
     }
 }
